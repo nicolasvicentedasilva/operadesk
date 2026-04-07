@@ -1,13 +1,12 @@
-// Identifica qual arquivo HTML está aberto no momento
+
 const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
-// Lista de páginas que exigem login para serem visualizadas (Segurança)
 const protectedPages = [
   "index.html",
   "chamados.html",
   "ativos.html",
   "role-selector.html"
-  // "relatorios.html" // Removido - funcionalidade de relatórios removida
+
 ];
 
 const bodyEl = document.body;
@@ -22,46 +21,36 @@ function showApp() {
   }
 }
 
-// Mapeamento de elementos do HTML para uso no JavaScript (Manipulação de DOM)
 const menuToggle = document.getElementById("menuToggle");
 const sidebar = document.getElementById("sidebar");
 const logoutBtn = document.getElementById("logoutBtn");
 const loginForm = document.getElementById("loginForm");
 
 
-
-//Autenticação e autorização 
-
-//Checa no LocalStorage se o usuário possui a permissão de acesso.
 function isLoggedIn() {
   return localStorage.getItem("infra_logged") === "true";
 }
 
-
-// Se a página for protegida e o usuário não estiver logado, redireciona para o login.
 function protectPage() {
   if (protectedPages.includes(currentPage) && !isLoggedIn()) {
     window.location.href = "login.html";
   }
 }
 
-// Form de Login - Captura os dados digitados e valida contra as credenciais padrão.
 function setupLogin() {
-  if (!loginForm) return; //Só executa se estiver na página de login
+  if (!loginForm) return;
 
   loginForm.addEventListener("submit", (event) => {
-    event.preventDefault(); // Evita o recarregamento da página
+    event.preventDefault();
 
     const user = document.getElementById("loginUser");
     const password = document.getElementById("loginPassword");
 
     if (!user || !password) return;
 
-
-    // Validação simples: usuário "admin" e senha "1234"
     if (user.value === "admin" && password.value === "1234") {
       localStorage.setItem("infra_logged", "true");
-      localStorage.setItem("nomeUsuarioLogado", user.value); // Salva o nome do usuário logado
+      localStorage.setItem("nomeUsuarioLogado", user.value);
       window.location.href = "role-selector.html";
     } else {
       alert("Usuário ou senha inválidos.");
@@ -69,27 +58,24 @@ function setupLogin() {
   });
 }
 
-// Lógica de logout do sistema: remove a permissão de acesso do LocalStorage e redireciona para o login.
 function setupLogout() {
-  // Verifica se o botão de logout existe na página atual para evitar erros.
+
   if (!logoutBtn) return;
 
   logoutBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    // Caixa de diálogo nativa para confirmar a intenção do usuário:
+
     const confirmar = confirm("Deseja realmente sair do sistema?");
     if (!confirmar) return;
-    // Limpa apenas o 'token' de acesso no banco de dados local (LocalStorage):
+
     localStorage.removeItem("infra_logged");
     localStorage.removeItem("activeRole");
-    localStorage.removeItem("nomeUsuarioLogado"); // Limpa o nome do usuário
-    // Redireciona para a tela inicial de acesso
+    localStorage.removeItem("nomeUsuarioLogado");
+
     window.location.href = "login.html";
   });
 }
 
-
-// Controle do menu lateral
 function setupSidebarToggle() {
   if (!menuToggle || !sidebar) return;
 
@@ -98,7 +84,6 @@ function setupSidebarToggle() {
   });
 }
 
-// Seleção de Perfil
 function setupRoleSelector() {
   const btnFuncionario = document.getElementById("btnFuncionario");
   const btnTecnico = document.getElementById("btnTecnico");
@@ -107,7 +92,7 @@ function setupRoleSelector() {
     btnFuncionario.addEventListener("click", () => {
       localStorage.setItem("activeRole", "user");
       localStorage.setItem("usuarioLogado", "Funcionario");
-      window.location.href = "index.html"; // Redireciona para index.html para mostrar Minhas Solicitações
+      window.location.href = "index.html";
     });
   }
 
@@ -120,19 +105,16 @@ function setupRoleSelector() {
   }
 }
 
-// Renderiza Dashboard do Funcionário
 function renderUserDashboard() {
   const usuarioLogadoNome = localStorage.getItem("nomeUsuarioLogado") || "";
   const meusChamados = chamados.filter((c) => c.usuario_origem === usuarioLogadoNome);
   const meusAtivos = ativos.filter((a) => a.usuario_origem === usuarioLogadoNome);
 
-  // Card de resumo
   const summaryCard = document.getElementById("user-open-requests");
   if (summaryCard) {
     summaryCard.textContent = `${meusChamados.length + meusAtivos.length} solicitações em aberto`;
   }
 
-  // Lista de solicitações
   const requestsList = document.getElementById("user-requests-list");
   if (!requestsList) return;
 
@@ -279,7 +261,6 @@ function setupUserForms() {
   }
 }
 
-// Ajuste de Visão baseado no perfil
 function ajustarVisao() {
   const activeRole = localStorage.getItem("activeRole");
 
@@ -293,7 +274,7 @@ function ajustarVisao() {
     if (ativosLink) ativosLink.style.display = "none";
 
     if (currentPage === "index.html") {
-      // Esconder dashboard admin
+
       const adminContent = document.querySelector('.main-content > header');
       if (adminContent) adminContent.style.display = "none";
       const cards = document.querySelector(".cards");
@@ -301,16 +282,14 @@ function ajustarVisao() {
       const dashboardPanels = document.querySelector(".dashboard-panels");
       if (dashboardPanels) dashboardPanels.style.display = "none";
 
-      // Mostrar dashboard user
       const userDashboard = document.getElementById("user-dashboard");
       if (userDashboard) userDashboard.style.display = "block";
 
-      // Renderizar dados do user
       renderUserDashboard();
       setupUserForms();
     }
   } else {
-    // Técnico: mantenha tudo visível padronizado
+
     if (dashboardLink) dashboardLink.style.display = "block";
     if (chamadosLink) chamadosLink.textContent = "Chamados";
     if (ativosLink) ativosLink.textContent = "Equipamentos";
@@ -319,8 +298,6 @@ function ajustarVisao() {
   showApp();
 }
 
-
-// Inicializa~]ao de dados: carrega os chamados e ativos do LocalStorage ou usa dados pré-definidos se não houver nada salvo.
 let chamados = JSON.parse(localStorage.getItem("chamados")) || [
   {
     id: "#1051",
@@ -376,7 +353,6 @@ let ativos = JSON.parse(localStorage.getItem("ativos")) || [
   }
 ];
 
-// Persistência de dados: essas funções pegam os dados que estão na memória temporária (var) e os salvam permanentemente no navegador (localStorage) para que não sejam perdidos ao atualizar a página ou fechar o navegador.
 function saveChamados() {
   localStorage.setItem("chamados", JSON.stringify(chamados));
 }
@@ -385,8 +361,6 @@ function saveAtivos() {
   localStorage.setItem("ativos", JSON.stringify(ativos));
 }
 
-
-// Tradutores de estilo e classe - Essas funções recebem o valor de prioridade ou status e retornam a classe CSS correspondente para estilização visual dos elementos na interface.
 function getPriorityClass(prioridade) {
   if (prioridade === "Alta") return "alta";
   if (prioridade === "Média") return "media";
@@ -410,11 +384,10 @@ function getTicketFilterStatus(status) {
 }
 
 function getAssetFilterStatus(status) {
-  // Atalho: Transforma o status em minúsculo para usar como filtro/classe.
+
   return status.toLowerCase();
 }
 
-// CRUD 
 const ticketForm = document.getElementById("ticketForm");
 const usuarioInput = document.getElementById("usuario");
 const problemaInput = document.getElementById("problema");
@@ -476,7 +449,6 @@ function renderChamados() {
   const activeRole = localStorage.getItem("activeRole");
   const usuarioLogadoNome = localStorage.getItem("nomeUsuarioLogado") || "";
 
-  // Filtrar chamados baseado no role
   let chamadosFiltrados = chamados;
   if (activeRole === "user") {
     chamadosFiltrados = chamados.filter(c => c.usuario_origem === usuarioLogadoNome);
@@ -609,7 +581,6 @@ function updateTicketSideKpis() {
   if (sideResolvidosHoje) sideResolvidosHoje.textContent = resolvidos;
 }
 
-// CRUD 2 - Ativos/Hardware: Segue a mesma lógica de CRUD dos chamados, adaptada para equipamentos.
 const assetFormPanel = document.getElementById("assetFormPanel");
 const openAssetFormBtn = document.getElementById("openAssetFormBtn");
 const closeAssetFormBtn = document.getElementById("closeAssetFormBtn");
@@ -764,34 +735,27 @@ function setupAssetFilters() {
   if (assetStatusFilter) assetStatusFilter.addEventListener("change", renderAtivos);
 }
 
-//ATUALIZAÇÃO DO PAINEL PRINCIPAL (DASHBOARD) 
-// Essa função é responsável por atualizar os dados exibidos no dashboard principal.
+
 function updateDashboard() {
   const cardAbertos = document.getElementById("cardAbertos");
   const dashboardResumo = document.getElementById("dashboardResumo");
   const ultimosChamadosDashboard = document.getElementById("ultimosChamadosDashboard");
 
-  // 2. CÁLCULOS (FILTROS): O JS varre a lista e conta quantos atendem aos critérios
   const abertos = chamados.filter((item) => item.status === "Aberto").length;
 
   if (cardAbertos) cardAbertos.textContent = abertos;
 
-  // 4. TEXTO DINÂMICO: Cria aquela frase de resumo usando Template Literals (as crases)
   if (dashboardResumo) {
     dashboardResumo.textContent =
       `O sistema possui ${chamados.length} solicitações registradas no momento.`;
   }
 
 
-  /**
-   * 5. MINI-TABELA DE RECENTES
-   * Pega os últimos 5 chamados, inverte a ordem (para o mais novo vir primeiro)
-   * e desenha uma versão simplificada da tabela no Dashboard.
-   */
+
 
   if (ultimosChamadosDashboard) {
     ultimosChamadosDashboard.innerHTML = "";
-    // .slice(-5) pega os últimos 5 | .reverse() coloca o último criado no topo
+
     chamados.slice(-5).reverse().forEach((chamado) => {
       const tr = document.createElement("tr");
       tr.innerHTML = `
@@ -806,41 +770,6 @@ function updateDashboard() {
   }
 }
 
-/* =========================================================
-   RELATÓRIOS - REMOVIDO
-========================================================= */
-/*
-function updateReports() {
-  const cardTotalRelatorio = document.getElementById("cardTotalRelatorio");
-  const cardAbertosRelatorio = document.getElementById("cardAbertosRelatorio");
-  const cardAndamentoRelatorio = document.getElementById("cardAndamentoRelatorio");
-  const cardResolvidosRelatorio = document.getElementById("cardResolvidosRelatorio");
-  const cardTotalAtivosRelatorio = document.getElementById("cardTotalAtivosRelatorio");
-  const cardAtivosOperacionaisRelatorio = document.getElementById("cardAtivosOperacionaisRelatorio");
-  const cardAtivosManutencaoRelatorio = document.getElementById("cardAtivosManutencaoRelatorio");
-  const cardAtivosDisponiveisRelatorio = document.getElementById("cardAtivosDisponiveisRelatorio");
-
-  const abertos = chamados.filter((item) => item.status === "Aberto").length;
-  const andamento = chamados.filter((item) => item.status === "Em andamento").length;
-  const resolvidos = chamados.filter((item) => item.status === "Resolvido").length;
-
-  const operacionais = ativos.filter((item) => item.status === "Operacional").length;
-  const manutencao = ativos.filter((item) => item.status === "Manutenção").length;
-  const disponiveis = ativos.filter((item) => item.status === "Disponível").length;
-
-  if (cardTotalRelatorio) cardTotalRelatorio.textContent = chamados.length;
-  if (cardAbertosRelatorio) cardAbertosRelatorio.textContent = abertos;
-  if (cardAndamentoRelatorio) cardAndamentoRelatorio.textContent = andamento;
-  if (cardResolvidosRelatorio) cardResolvidosRelatorio.textContent = resolvidos;
-
-  if (cardTotalAtivosRelatorio) cardTotalAtivosRelatorio.textContent = ativos.length;
-  if (cardAtivosOperacionaisRelatorio) cardAtivosOperacionaisRelatorio.textContent = operacionais;
-  if (cardAtivosManutencaoRelatorio) cardAtivosManutencaoRelatorio.textContent = manutencao;
-  if (cardAtivosDisponiveisRelatorio) cardAtivosDisponiveisRelatorio.textContent = disponiveis;
-}
-*/
-
-// Gerador de gráficos 
 function updateCharts() {
   const total = chamados.length || 1;
   const abertos = chamados.filter((item) => item.status === "Aberto").length;
@@ -867,24 +796,21 @@ function updateCharts() {
   if (relatorioResolvidosGrafico) relatorioResolvidosGrafico.textContent = resolvidos;
 }
 
-// Maestro do sistema: função que é o 'botão de atualização' interno.
 function refreshAllViews() {
   renderChamados();
   renderAtivos();
   updateTicketCards();
   updateTicketSideKpis();
   updateDashboard();
-  // updateReports(); // Removido - funcionalidade de relatórios removida
+
   updateCharts();
 }
 
+protectPage();
+setupLogin();
+setupLogout();
 
-//Este bloco 'liga' todas as funcionalidades assim que a página carrega.
-protectPage(); //Verifica se o usuário está logado antes de mostrar qualquer dado
-setupLogin(); //Ativa os botões de entrar e sair do sistema 
-setupLogout(); //^
-
-setupSidebarToggle(); 
+setupSidebarToggle();
 setupTicketForm();
 setupTicketFilters();
 setupAssetForm();
@@ -893,7 +819,6 @@ setupRoleSelector();
 ajustarVisao();
 refreshAllViews();
 
-//Ponte js para html - Estas linhas tornam as funções acessíveis para os botões que estão no HTML.
 window.preencherFormularioEdicao = preencherFormularioEdicao;
 window.excluirChamado = excluirChamado;
 window.preencherFormularioAtivo = preencherFormularioAtivo;
@@ -901,6 +826,5 @@ window.excluirAtivo = excluirAtivo;
 window.excluirSolicitacao = excluirSolicitacao;
 window.alternarStatus = alternarStatus;
 window.removerTecnico = removerTecnico;
-
 
 

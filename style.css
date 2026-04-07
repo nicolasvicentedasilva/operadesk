@@ -32,10 +32,10 @@ body.loaded  { opacity: 1; transition: opacity 0.25s ease; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 99px; }
 
-/* ══ LAYOUT ══ */
+
 .app-layout { display: flex; min-height: 100vh; }
 
-/* ══ SIDEBAR ══ */
+
 .sidebar {
   width: var(--sidebar-w);
   background: var(--bg1);
@@ -113,10 +113,10 @@ body.loaded  { opacity: 1; transition: opacity 0.25s ease; }
 
 .sidebar-divider { height: 1px; background: var(--border); margin: 10px 0; }
 
-/* ══ MAIN ══ */
+
 .main-content { flex: 1; min-width: 0; padding: 30px 34px; display: flex; flex-direction: column; gap: 22px; }
 
-/* ══ TOPBAR ══ */
+
 .topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
 .topbar-left { display: flex; align-items: flex-start; gap: 14px; }
 
@@ -132,7 +132,7 @@ body.loaded  { opacity: 1; transition: opacity 0.25s ease; }
 .topbar-info p { font-size: 13px; color: var(--text2); margin-top: 3px; }
 .topbar-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
 
-/* ══ METRIC CARDS ══ */
+
 .cards { display: grid; gap: 12px; }
 .cards-4 { grid-template-columns: repeat(4, 1fr); }
 .cards-3 { grid-template-columns: repeat(3, 1fr); }
@@ -155,7 +155,7 @@ body.loaded  { opacity: 1; transition: opacity 0.25s ease; }
 }
 .metric-card .metric-value { font-size: 30px; font-weight: 600; color: var(--text); letter-spacing: -1px; line-height: 1; }
 
-/* ══ PANEL ══ */
+
 .panel { background: var(--bg1); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
 .panel-header {
   display: flex; justify-content: space-between; align-items: flex-start;
@@ -170,7 +170,7 @@ body.loaded  { opacity: 1; transition: opacity 0.25s ease; }
   border-radius: 99px; padding: 4px 10px; white-space: nowrap;
 }
 
-/* ══ FORMS ══ */
+
 .filter-grid  { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; padding: 14px 22px; }
 .form-grid    { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 18px 22px; }
 
@@ -201,7 +201,7 @@ select {
 
 .form-actions { grid-column: 1 / -1; display: flex; gap: 10px; padding-top: 4px; }
 
-/* ══ BUTTONS ══ */
+
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 7px;
   border: none; cursor: pointer; font-family: var(--font); font-size: 13px; font-weight: 500;
@@ -215,7 +215,7 @@ select {
 .btn-danger:hover { background: rgba(220,50,50,0.18); }
 .btn-sm { font-size: 12px; padding: 6px 11px; border-radius: 6px; }
 
-/* ══ TABLE ══ */
+
 .table-wrapper { overflow-x: auto; }
 .data-table { width: 100%; border-collapse: collapse; min-width: 640px; }
 .data-table thead th {
@@ -237,7 +237,7 @@ select {
 .table-empty-icon { font-size: 26px; margin-bottom: 10px; opacity: 0.25; display: block; }
 .table-empty p { font-size: 13px; color: var(--text3); }
 
-/* ══ BADGES ══ */
+
 .badge {
   display: inline-flex; align-items: center; border-radius: 99px;
   padding: 3px 9px; font-size: 11px; font-weight: 500; white-space: nowrap;
@@ -255,7 +255,7 @@ select {
 .badge-solicitado{ background: rgba(200,140,0,0.1);  color: #c8a030; border: 1px solid rgba(200,140,0,0.18);  }
 .badge-atendimento{background: rgba(50,100,220,0.1); color: #6090e0; border: 1px solid rgba(50,100,220,0.18); }
 
-/* ══ CHARTS ══ */
+
 .chart-wrapper { padding: 2px 0; }
 .chart-row { margin-bottom: 14px; }
 .chart-row:last-child { margin-bottom: 0; }
@@ -268,7 +268,7 @@ select {
 .bar-blue  { background: #6090e0; }
 .bar-green { background: #4eb07a; }
 
-/* ══ USER CARDS ══ */
+
 .user-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; padding: 18px 22px; }
 .user-card {
   background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
@@ -285,7 +285,7 @@ select {
 .user-info .user-role { font-size: 12px; color: var(--text3); }
 .user-actions-btns { display: flex; gap: 7px; margin-top: 14px; }
 
-/* ══ LOGIN ══ */
+
 .login-page {
   min-height: 100vh; background: #000000;
   display: grid; place-items: center; padding: 0;
@@ -436,7 +436,7 @@ select {
 }
 .login-error.visible { display: block; }
 
-/* ══ ROLE SELECTOR ══ */
+
 .selector-page {
   min-height: 100vh; background: var(--bg);
   display: flex; align-items: center; justify-content: center; padding: 24px;
@@ -462,7 +462,7 @@ select {
 .role-card h2 { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
 .role-card p  { font-size: 12.5px; color: var(--text3); line-height: 1.55; }
 
-/* ══ MODAL ══ */
+
 .modal-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.72); backdrop-filter: blur(6px);
   display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 24px;
@@ -490,7 +490,7 @@ select {
 .modal-text  { font-size: 13.5px; color: var(--text2); line-height: 1.65; }
 .modal-form  { display: flex; flex-direction: column; gap: 14px; }
 
-/* ══ TOAST ══ */
+
 .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 2000; display: flex; flex-direction: column; gap: 7px; }
 .toast {
   background: var(--bg2); border: 1px solid var(--border2); border-radius: var(--radius-sm);
@@ -506,7 +506,7 @@ select {
 .toast-error   .toast-dot { background: #e06060; }
 .toast-info    .toast-dot { background: #6090e0; }
 
-/* ══ RESPONSIVO ══ */
+
 @media (max-width:1200px) { .cards-4{grid-template-columns:repeat(2,1fr);} .user-grid{grid-template-columns:repeat(2,1fr);} }
 @media (max-width:900px)  { .login-card{grid-template-columns:1fr;} .login-left{display:none;} .role-grid{grid-template-columns:1fr;} }
 @media (max-width:820px)  {
