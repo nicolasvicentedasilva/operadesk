@@ -11,20 +11,18 @@ Pequenas empresas muitas vezes operam no "caos controlado" de planilhas. O Opera
 * **Controle de Patrimônio:** Módulo de inventário focado em ativos críticos (notebooks, desktops e periféricos).
 
 ## Vizualização do Sistema
-## 🖥️ Visualização do Sistema
+
 
 <p align="center">
-  <img src="prints/image.png" width="45%" title="Login">
-  <img src="prints/image-1.png" width="45%" title="Seleção de Perfil">
-</p>
-
-<p align="center">
-  <img src="prints/image-2.png" width="90%" title="Dashboard Principal">
-</p>
-
-<p align="center">
-  <img src="prints/image-3.png" width="45%" title="Lista de Chamados">
-  <img src="prints/image-4.png" width="45%" title="Gestão de Ativos">
+  <img src="prints/image.png" width="100%" alt="Tela de Login" title="Tela de Login">
+  <br><br>
+  <img src="prints/image-1.png" width="100%" alt="Seleção de Perfil" title="Seleção de Perfil">
+  <br><br>
+  <img src="prints/image-2.png" width="100%" alt="Dashboard Principal" title="Dashboard Principal">
+  <br><br>
+  <img src="prints/image-3.png" width="100%" alt="Módulo de Chamados" title="Módulo de Chamados">
+  <br><br>
+  <img src="prints/image-4.png" width="100%" alt="Controle de Ativos" title="Controle de Ativos">
 </p>
 
 
