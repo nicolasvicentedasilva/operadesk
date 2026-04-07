@@ -11,13 +11,21 @@ Pequenas empresas muitas vezes operam no "caos controlado" de planilhas. O Opera
 * **Controle de Patrimônio:** Módulo de inventário focado em ativos críticos (notebooks, desktops e periféricos).
 
 ## Vizualização do Sistema
-![ ](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![](image-3.png)
-![alt text](image-8.png)
-![alt text](image-7.png)
-![alt text](image-9.png)
+## 🖥️ Visualização do Sistema
+
+<p align="center">
+  <img src="prints/image.png" width="45%" title="Login">
+  <img src="prints/image-1.png" width="45%" title="Seleção de Perfil">
+</p>
+
+<p align="center">
+  <img src="prints/image-2.png" width="90%" title="Dashboard Principal">
+</p>
+
+<p align="center">
+  <img src="prints/image-3.png" width="45%" title="Lista de Chamados">
+  <img src="prints/image-4.png" width="45%" title="Gestão de Ativos">
+</p>
 
 
 ## Stack Técnica
