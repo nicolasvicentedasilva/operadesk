@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OperaDesk | Chamados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo-container"><img src="img/logood.png" alt="OperaDesk"></div>
+        <div class="sidebar-brand-text"><h2>OperaDesk</h2></div>
+      </div>
+      <nav class="menu">
+        <span class="menu-section-label">Principal</span>
+        <a href="index.html">
+          <svg class="menu-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="9" y="1" width="6" height="6" rx="1.5"/><rect x="1" y="9" width="6" height="6" rx="1.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="chamados.html" class="active">
+          <svg class="menu-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4h12v8a1 1 0 01-1 1H3a1 1 0 01-1-1V4z"/><path d="M5 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/></svg>
+          <span>Chamados</span>
+        </a>
+        <a href="ativos.html">
+          <svg class="menu-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="3" width="14" height="10" rx="2"/><path d="M5 6h6M5 9h4"/></svg>
+          <span>Equipamentos</span>
+        </a>
+        <div class="sidebar-divider"></div>
+        <a href="#" id="logoutBtn" class="logout-link">
+          <svg class="menu-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M10 11l3-3-3-3M13 8H6"/></svg>
+          <span>Sair</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle" id="menuToggle">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4h12M2 8h12M2 12h12"/></svg>
+          </button>
+          <div class="topbar-info">
+            <p class="page-eyebrow">Operação</p>
+            <h1>Central de Chamados</h1>
+            <p>Registre, monitore e resolva chamados de suporte.</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-primary btn-sm" id="openTicketFormBtn">+ Novo Chamado</button>
+        </div>
+      </header>
+
+      <!-- MÉTRICAS -->
+      <section class="cards cards-1">
+        <div class="metric-card">
+          <span class="metric-label">Chamados Abertos</span>
+          <p class="metric-value" id="cardAbertos">0</p>
+        </div>
+      </section>
+
+      <!-- FORMULÁRIO NOVO CHAMADO -->
+      <div class="panel" id="ticketFormPanel" style="display:none;">
+        <div class="panel-header">
+          <div><h2 id="ticketFormTitle">Novo Chamado</h2><p>Preencha os dados para registrar o chamado.</p></div>
+          <button class="btn btn-ghost btn-sm" id="closeTicketFormBtn">Cancelar</button>
+        </div>
+        <form id="ticketForm" class="form-grid">
+          <input type="hidden" id="editIndex">
+          <div class="form-group">
+            <label for="usuario">Usuário</label>
+            <input type="text" id="usuario" placeholder="Nome do usuário" required>
+          </div>
+          <div class="form-group">
+            <label for="prioridade">Prioridade</label>
+            <select id="prioridade" required>
+              <option value="Baixa">Baixa</option>
+              <option value="Média" selected>Média</option>
+              <option value="Alta">Alta</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="problema">Problema</label>
+            <input type="text" id="problema" placeholder="Descreva o problema" required>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" required>
+              <option value="Aberto" selected>Aberto</option>
+              <option value="Em andamento">Em andamento</option>
+              <option value="Resolvido">Resolvido</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submitButton">Cadastrar Chamado</button>
+            <button type="button" class="btn btn-ghost" id="resetTicketFormBtn">Limpar</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- FILTROS -->
+      <div class="panel">
+        <div class="panel-header">
+          <div><h2>Busca e Filtros</h2><p>Localize chamados rapidamente.</p></div>
+        </div>
+        <div class="filter-grid">
+          <div class="form-group">
+            <label for="searchInput">Buscar</label>
+            <input type="text" id="searchInput" placeholder="Buscar por ID, usuário ou problema...">
+          </div>
+          <div class="form-group">
+            <label for="statusFilter">Status</label>
+            <select id="statusFilter">
+              <option value="todos">Todos os status</option>
+              <option value="aberto">Aberto</option>
+              <option value="andamento">Em andamento</option>
+              <option value="resolvido">Resolvido</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABELA -->
+      <div class="panel">
+        <div class="panel-header">
+          <div><h2>Lista de Chamados</h2><p>Visão detalhada de todos os chamados.</p></div>
+          <span class="panel-chip">Helpdesk</span>
+        </div>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th><th>Usuário</th><th>Problema</th><th>Prioridade</th><th>Status</th><th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="chamadosTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL DELETE -->
+  <div class="modal-overlay" id="deleteTicketModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Excluir chamado</h3>
+        <button class="modal-close" id="deleteTicketModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-text">Tem certeza que deseja excluir este chamado? Esta ação não pode ser desfeita.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="deleteTicketCancelBtn">Cancelar</button>
+        <button class="btn btn-danger" id="deleteTicketConfirmBtn">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL LOGOUT -->
+  <div class="modal-overlay" id="logoutModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Sair do sistema</h3>
+        <button class="modal-close" id="logoutModalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-text">Tem certeza que deseja sair?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="logoutCancelBtn">Cancelar</button>
+        <button class="btn btn-danger" id="logoutConfirmBtn">Sair</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="scripts.js"></script>
+</body>
+</html>
