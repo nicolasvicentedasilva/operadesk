@@ -10,6 +10,16 @@ Pequenas empresas muitas vezes operam no "caos controlado" de planilhas. O Opera
 * **Custo Operacional Reduzido:** Estrutura leve e funcional que organiza o fluxo de suporte sem exigir grandes investimentos em software.
 * **Controle de Patrimônio:** Módulo de inventário focado em ativos críticos (notebooks, desktops e periféricos).
 
+## Vizualização do Sistema
+![ ](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![](image-3.png)
+![alt text](image-8.png)
+![alt text](image-7.png)
+![alt text](image-9.png)
+
+
 ## Stack Técnica
 * **Front-end:** HTML5, CSS3 e JavaScript.
 * **Persistência de Dados:** Web Storage API (LocalStorage).
