@@ -14,15 +14,16 @@ Pequenas empresas muitas vezes operam no "caos controlado" de planilhas. O Opera
 
 
 <p align="center">
-  <img src="prints/image.png" width="100%" alt="Tela de Login" title="Tela de Login">
+  <img src="prints/operadesk1.png" width="100%" alt="Tela de Login" title="Tela de Login">
   <br><br>
-  <img src="prints/image-1.png" width="100%" alt="Seleção de Perfil" title="Seleção de Perfil">
+  <img src="prints/operadesk2-3-4.png" width="100%" alt="Seleção de Perfil" title="Seleção de Perfil">
   <br><br>
-  <img src="prints/image-2.png" width="100%" alt="Dashboard Principal" title="Dashboard Principal">
+  <img src="prints/operadesk3.png" width="100%" alt="Dashboard Principal" title="Dashboard Principal - Sou funcionário">
   <br><br>
-  <img src="prints/image-3.png" width="100%" alt="Módulo de Chamados" title="Módulo de Chamados">
+  <img src="prints/operadesk2-3-4.png" width="100%" alt="Módulo de Chamados" title="Módulo de Chamados">
   <br><br>
-  <img src="prints/image-4.png" width="100%" alt="Controle de Ativos" title="Controle de Ativos">
+  <img src="prints/operadesk4.png" width="100%" alt="Controle de Ativos" title="Controle - Suporte Técnico">
+    <img src="prints/operadesk5.png" width="100%" alt="Controle de Ativos" title="Controle - Suporte Técnico">
 </p>
 
 
@@ -41,7 +42,3 @@ O OperaDesk está sendo preparado para se tornar uma solução SaaS (Software as
 - [ ] Backend com autenticação segura e múltiplos inquilinos.
 - [ ] Integração com Slack/WhatsApp para notificações de novos chamados.
 
-## Como Visualizar
-1. Clone o repositório:
-   ```bash
-   git clone [https://github.com/nicolasvicentedasilva/operadesk.git](https://github.com/nicolasvicentedasilva/operadesk.git)
